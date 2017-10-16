@@ -40,6 +40,9 @@ const buildSheetFromMatrix = (data, options = {}) => {
         cell.t = 'n';
         cell.v = buildExcelDate(cell.v);
         cell.z = cell.z || XLSX.SSF._table[14]; // eslint-disable-line no-underscore-dangle
+      } else if (cell.v.indexOf('http') == 0) {
+        cell.t = 's';
+        cell.l = {Target: cell.v, Tooltip: cell.v};
       } else {
         cell.t = 's';
       }
